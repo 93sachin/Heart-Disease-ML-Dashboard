@@ -25,6 +25,10 @@ df = pd.read_csv("HeartDiseaseTrain-Test.csv")
 # ------------------------------
 st.subheader("📊 Dataset Preview")
 st.write(df.head())
+st.subheader("📊 Dataset Shape")
+st.write(df.shape)
+st.subheader("📋 Column Names")
+st.write(df.columns)
 
 st.subheader("📊 Target Distribution")
 target_counts = df['target'].value_counts()
@@ -87,6 +91,7 @@ acc_df = pd.DataFrame({
     "Accuracy": [acc_lr, acc_knn, acc_nb, acc_dt, acc_rf]
 })
 
+acc_df['Accuracy'] = acc_df['Accuracy'] * 100
 st.write(acc_df)
 
 # Best model
