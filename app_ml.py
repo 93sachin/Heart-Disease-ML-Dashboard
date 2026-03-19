@@ -95,7 +95,16 @@ acc_df['Accuracy'] = acc_df['Accuracy'] * 100
 st.write(acc_df)
 
 # Best model
-best_model = acc_df.loc[acc_df['Accuracy'].idxmax()]
+max_acc = acc_df['Accuracy'].max()
+
+best_models = acc_df[acc_df['Accuracy'] == max_acc]
+
+# Agar multiple models same accuracy ke ho
+if "Random Forest" in best_models['Model'].values:
+    best_model = best_models[best_models['Model'] == "Random Forest"].iloc[0]
+else:
+    best_model = best_models.iloc[0]
+
 st.success(f"🏆 Best Model: {best_model['Model']} (Accuracy: {best_model['Accuracy']:.2f})")
 
 # ------------------------------
